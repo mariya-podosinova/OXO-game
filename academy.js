@@ -21,9 +21,18 @@ function takeTurn(row, column) {
 // Return either "noughts", "crosses" or "nobody" if the game is over.
 // Otherwise return null to continue playing.
 function checkWinner() {
-  if ((board[0][0] && board[0][1] && board[0][2]) === "nought")
+  if (
+    board[0][0] === "nought" &&
+    board[0][1] === "nought" &&
+    board[0][2] === "nought"
+  )
     return "noughts";
-  if ((board[0][0] && board[0][1] && board[0][2]) === "cross") return "crosses";
+  if (
+    board[0][0] === "cross" &&
+    board[0][1] === "cross" &&
+    board[0][2] === "cross"
+  )
+    return "crosses";
 
   console.log("checkWinner was called");
   return null;
