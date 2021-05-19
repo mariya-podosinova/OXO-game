@@ -14,7 +14,7 @@ for (f of functions) {
 function clearBoard() {
     for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
         for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
-            document.getElementById(`row-${rowindex}-column+${columnIndex}`).innerHTML = ""
+            document.getElementById(`row-${rowIndex}-column-${columnIndex}`).innerHTML = ""
         }
     }
 }
@@ -22,12 +22,12 @@ function clearBoard() {
 // Populate the grid with images based on the board state.
 function drawBoard(board) {
     clearBoard();
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            if (!board[i][j]) {
+    for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
+        for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
+            if (!board[rowIndex][columnIndex]) {
                 continue;
             }
-            document.getElementById("row-"+i+"-column-"+j).innerText = board[i][j] === "nought" ? "⭕" : "❌";
+            document.getElementById(`row-${rowIndex}-column-${columnIndex}`).innerText = board[rowIndex][columnIndex] === "nought" ? "⭕" : "❌";
         }
     }
 }
@@ -71,10 +71,10 @@ function resetClick(event) {
 }
 
 // Bind the click events for the grid.
-for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-        const gridPosition = document.getElementById("row-"+i+"-column-"+j);
-        gridPosition.addEventListener("click", positionClick.bind(null, i, j));
+for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
+    for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
+        const gridPosition = document.getElementById(`row-${rowIndex}-column-${columnIndex}`);
+        gridPosition.addEventListener("click", positionClick.bind(null, rowIndex, columnIndex));
     }
 }
 
