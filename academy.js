@@ -11,6 +11,7 @@ let first = true;
 
 function takeTurn(row, column) {
   console.log("takeTurn was called with row: " + row + ", column:" + column);
+
   if (board[row][column] !== null) return board;
   if (first) board[row][column] = "nought";
   else board[row][column] = "cross";
@@ -23,7 +24,7 @@ function takeTurn(row, column) {
 // Otherwise return null to continue playing.
 function checkWinner() {
   const boardToArray = [...board[0], ...board[1], ...board[2]];
-
+  console.log(boardToArray);
   if (
     board[0][0] === "nought" &&
     board[0][1] === "nought" &&
@@ -39,6 +40,24 @@ function checkWinner() {
   if (
     board[2][0] === "nought" &&
     board[2][1] === "nought" &&
+    board[2][2] === "nought"
+  )
+    return "noughts";
+  if (
+    board[0][0] === "nought" &&
+    board[1][0] === "nought" &&
+    board[2][0] === "nought"
+  )
+    return "noughts";
+  if (
+    board[0][1] === "nought" &&
+    board[1][1] === "nought" &&
+    board[2][1] === "nought"
+  )
+    return "noughts";
+  if (
+    board[0][2] === "nought" &&
+    board[1][2] === "nought" &&
     board[2][2] === "nought"
   )
     return "noughts";
@@ -69,6 +88,24 @@ function checkWinner() {
   if (
     board[2][0] === "cross" &&
     board[2][1] === "cross" &&
+    board[2][2] === "cross"
+  )
+    return "crosses";
+  if (
+    board[0][0] === "cross" &&
+    board[1][0] === "cross" &&
+    board[2][0] === "cross"
+  )
+    return "crosses";
+  if (
+    board[0][1] === "cross" &&
+    board[1][1] === "cross" &&
+    board[2][1] === "cross"
+  )
+    return "crosses";
+  if (
+    board[0][2] === "cross" &&
+    board[1][2] === "cross" &&
     board[2][2] === "cross"
   )
     return "crosses";
