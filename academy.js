@@ -21,10 +21,36 @@ function takeTurn(row, column) {
 // Return either "noughts", "crosses" or "nobody" if the game is over.
 // Otherwise return null to continue playing.
 function checkWinner() {
+  const boardToArray = [...board[0], ...board[1], ...board[2]];
+
   if (
     board[0][0] === "nought" &&
     board[0][1] === "nought" &&
     board[0][2] === "nought"
+  )
+    return "noughts";
+  if (
+    board[1][0] === "nought" &&
+    board[1][1] === "nought" &&
+    board[1][2] === "nought"
+  )
+    return "noughts";
+  if (
+    board[2][0] === "nought" &&
+    board[2][1] === "nought" &&
+    board[2][2] === "nought"
+  )
+    return "noughts";
+  if (
+    board[0][0] === "nought" &&
+    board[1][1] === "nought" &&
+    board[2][2] === "nought"
+  )
+    return "noughts";
+  if (
+    board[0][2] === "nought" &&
+    board[1][1] === "nought" &&
+    board[2][1] === "nought"
   )
     return "noughts";
   if (
@@ -33,9 +59,37 @@ function checkWinner() {
     board[0][2] === "cross"
   )
     return "crosses";
+  if (
+    board[0][0] === "cross" &&
+    board[1][1] === "cross" &&
+    board[1][2] === "cross"
+  )
+    return "crosses";
+  if (
+    board[2][0] === "cross" &&
+    board[2][1] === "cross" &&
+    board[2][2] === "cross"
+  )
+    return "crosses";
+  if (
+    board[0][0] === "cross" &&
+    board[1][1] === "cross" &&
+    board[2][2] === "cross"
+  )
+    return "crosses";
+
+  if (
+    board[0][2] === "cross" &&
+    board[1][1] === "cross" &&
+    board[2][0] === "cross"
+  )
+    return "crosses";
 
   console.log("checkWinner was called");
-  return null;
+  if (boardToArray.includes(null)) return null;
+  else {
+    return "nobody";
+  }
 }
 
 // Set the game state back to its original state to play another game.
