@@ -11,6 +11,7 @@ let first = true;
 
 function takeTurn(row, column) {
   console.log("takeTurn was called with row: " + row + ", column:" + column);
+  if (board[row][column] !== null) return board;
   if (first) board[row][column] = "nought";
   else board[row][column] = "cross";
 
@@ -50,7 +51,7 @@ function checkWinner() {
   if (
     board[0][2] === "nought" &&
     board[1][1] === "nought" &&
-    board[2][1] === "nought"
+    board[2][0] === "nought"
   )
     return "noughts";
   if (
