@@ -29,42 +29,23 @@ function checkWinner() {
   console.log(boardToArray);
 
   if (numTurns > 4) {
-    if (boardToArray[0] && boardToArray[1] && boardToArray[2] === "nought") {
-      return "noughts";
+    if (boardToArray[0] && boardToArray[1] && boardToArray[2]) {
+      return boardToArray[0] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[3] && boardToArray[4] && boardToArray[5]) {
+      return boardToArray[3] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[6] && boardToArray[7] && boardToArray[8]) {
+      return boardToArray[6] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[0] && boardToArray[3] && boardToArray[6]) {
+      return boardToArray[0] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[1] && boardToArray[4] && boardToArray[7]) {
+      return boardToArray[1] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[2] && boardToArray[5] && boardToArray[8]) {
+      return boardToArray[2] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[0] && boardToArray[4] && boardToArray[8]) {
+      return boardToArray[0] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[6] && boardToArray[4] && boardToArray[2]) {
+      return boardToArray[6] === "nought" ? "noughts" : "crosses";
     }
-    // if (((winningBoard[3] == winningBoard[4]) == winningBoard[5]) === 0) {
-    //   return "noughts";
-    // }
-    // if (((winningBoard[6] == winningBoard[7]) == winningBoard[8]) === 0) {
-    //   return "noughts";
-    // }
-    // if (((winningBoard[0] == winningBoard[3]) == winningBoard[6]) === 0) {
-    //   return "noughts";
-    // }
-    // if (((winningBoard[1] == winningBoard[4]) == winningBoard[7]) === 0) {
-    //   return "noughts";
-    // }
-    // if (((winningBoard[2] == winningBoard[5]) == winningBoard[8]) === 0) {
-    //   return "noughts";
-    // }
-    // if (((winningBoard[0] == winningBoard[1]) == winningBoard[2]) === 1) {
-    //   return "crosses";
-    // }
-    // if (((winningBoard[3] == winningBoard[4]) == winningBoard[5]) === 1) {
-    //   return "crosses";
-    // }
-    // if (((winningBoard[6] == winningBoard[7]) == winningBoard[8]) === 1) {
-    //   return "crosses";
-    // }
-    // if (((winningBoard[0] == winningBoard[3]) == winningBoard[6]) === 1) {
-    //   return "crosses";
-    // }
-    // if (((winningBoard[1] == winningBoard[4]) == winningBoard[7]) === 1) {
-    //   return "crosses";
-    // }
-    // if (((winningBoard[2] == winningBoard[5]) == winningBoard[8]) === 1) {
-    //   return "crosses";
-    // }
   }
 
   console.log("checkWinner was called");
