@@ -24,110 +24,53 @@ function takeTurn(row, column) {
 // Otherwise return null to continue playing.
 function checkWinner() {
   const boardToArray = [...board[0], ...board[1], ...board[2]];
+  const numTurns = boardToArray.filter((el) => el !== null).length;
+  // console.log(numTurns);
   console.log(boardToArray);
-  if (
-    board[0][0] === "nought" &&
-    board[0][1] === "nought" &&
-    board[0][2] === "nought"
-  )
-    return "noughts";
-  if (
-    board[1][0] === "nought" &&
-    board[1][1] === "nought" &&
-    board[1][2] === "nought"
-  )
-    return "noughts";
-  if (
-    board[2][0] === "nought" &&
-    board[2][1] === "nought" &&
-    board[2][2] === "nought"
-  )
-    return "noughts";
-  if (
-    board[0][0] === "nought" &&
-    board[1][0] === "nought" &&
-    board[2][0] === "nought"
-  )
-    return "noughts";
-  if (
-    board[0][1] === "nought" &&
-    board[1][1] === "nought" &&
-    board[2][1] === "nought"
-  )
-    return "noughts";
-  if (
-    board[0][2] === "nought" &&
-    board[1][2] === "nought" &&
-    board[2][2] === "nought"
-  )
-    return "noughts";
-  if (
-    board[0][0] === "nought" &&
-    board[1][1] === "nought" &&
-    board[2][2] === "nought"
-  )
-    return "noughts";
-  if (
-    board[0][2] === "nought" &&
-    board[1][1] === "nought" &&
-    board[2][0] === "nought"
-  )
-    return "noughts";
-  if (
-    board[0][0] === "cross" &&
-    board[0][1] === "cross" &&
-    board[0][2] === "cross"
-  )
-    return "crosses";
-  if (
-    board[0][0] === "cross" &&
-    board[1][1] === "cross" &&
-    board[1][2] === "cross"
-  )
-    return "crosses";
-  if (
-    board[2][0] === "cross" &&
-    board[2][1] === "cross" &&
-    board[2][2] === "cross"
-  )
-    return "crosses";
-  if (
-    board[0][0] === "cross" &&
-    board[1][0] === "cross" &&
-    board[2][0] === "cross"
-  )
-    return "crosses";
-  if (
-    board[0][1] === "cross" &&
-    board[1][1] === "cross" &&
-    board[2][1] === "cross"
-  )
-    return "crosses";
-  if (
-    board[0][2] === "cross" &&
-    board[1][2] === "cross" &&
-    board[2][2] === "cross"
-  )
-    return "crosses";
-  if (
-    board[0][0] === "cross" &&
-    board[1][1] === "cross" &&
-    board[2][2] === "cross"
-  )
-    return "crosses";
 
-  if (
-    board[0][2] === "cross" &&
-    board[1][1] === "cross" &&
-    board[2][0] === "cross"
-  )
-    return "crosses";
+  if (numTurns > 4) {
+    if (boardToArray[0] && boardToArray[1] && boardToArray[2]) {
+      return boardToArray[0] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[3] && boardToArray[4] && boardToArray[5]) {
+      return boardToArray[3] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[6] && boardToArray[7] && boardToArray[8]) {
+      return boardToArray[6] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[0] && boardToArray[3] && boardToArray[6]) {
+      return boardToArray[0] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[1] && boardToArray[4] && boardToArray[7]) {
+      return boardToArray[1] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[2] && boardToArray[5] && boardToArray[8]) {
+      return boardToArray[2] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[0] && boardToArray[4] && boardToArray[8]) {
+      return boardToArray[0] === "nought" ? "noughts" : "crosses";
+    } else if (boardToArray[6] && boardToArray[4] && boardToArray[2]) {
+      return boardToArray[6] === "nought" ? "noughts" : "crosses";
+    }
+  }
 
   console.log("checkWinner was called");
   if (boardToArray.includes(null)) return null;
   else {
     return "nobody";
   }
+}
+
+// Set the game state back to its original state to play another game.
+function resetGame() {
+  console.log("resetGame was called");
+  board = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ];
+  return board;
+}
+
+// Return the current board state with either a "nought" or a "cross" in
+// each position. Put a null in a position that hasn't been played yet.
+
+function getBoard() {
+  return board;
 }
 
 // Set the game state back to its original state to play another game.
