@@ -23,7 +23,8 @@ function takeTurn(row, column) {
 // Return either "noughts", "crosses" or "nobody" if the game is over.
 // Otherwise return null to continue playing.
 function checkWinner() {
-  const boardToArray = [...board[0], ...board[1], ...board[2]];
+  const boardToArray = board.flat();
+  console.log(boardToArray);
   const numTurns = boardToArray.filter((el) => el !== null).length;
   // console.log(numTurns);
   console.log(boardToArray);
