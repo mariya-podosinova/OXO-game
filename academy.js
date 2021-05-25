@@ -9,60 +9,91 @@ let board = [
 ];
 let first = true;
 let gameOn = true;
+let winner = null;
 
 function takeTurn(row, column) {
   console.log("takeTurn was called with row: " + row + ", column:" + column);
+
   if (!gameOn) return null;
   if (board[row][column] !== null) return board;
+
   if (first) board[row][column] = "nought";
   else board[row][column] = "cross";
 
   first = !first;
   return board;
 }
+const checkForWinner = (noughts, crosses) => {
+  if (crosses.length === 3) {
+    return "crosses";
+  }
+  if (noughts.length === 3) {
+    return "noughts";
+  }
+  return null;
+};
+//Horizonatal
+const horizontalChecking = () => {
+  board.forEach((row) => {
+    const crosses = row.filter((col) => col === "cross");
+    const noughts = row.filter((col) => col === "nought");
+
+    if (checkForWinner(noughts, crosses)) {
+      winner = checkForWinner(noughts, crosses);
+    }
+  });
+  return winner;
+};
+//Verical
+const verticalChecking = () => {
+  board.forEach((row, i) => {
+    const columnArr = [board[0][i], board[1][i], board[2][i]];
+    const crosses = columnArr.filter((col) => col === "cross");
+    const noughts = columnArr.filter((col) => col === "nought");
+
+    if (checkForWinner(noughts, crosses)) {
+      winner = checkForWinner(noughts, crosses);
+    }
+  });
+  return winner;
+};
+
+//Diagonal
+const diagonalChecking = () => {
+  board.forEach((row, i) => {
+    if (i !== 1) {
+      let j = 2 - i;
+      const diagonalArr = [board[0][i], board[1][1], board[j][2]];
+      const crosses = diagonalArr.filter((col) => col === "cross");
+      const noughts = diagonalArr.filter((col) => col === "nought");
+
+      if (checkForWinner(noughts, crosses)) {
+        winner = checkForWinner(noughts, crosses);
+      }
+    }
+  });
+  return winner;
+};
 
 // Return either "noughts", "crosses" or "nobody" if the game is over.
 // Otherwise return null to continue playing.
 function checkWinner() {
-  let winner = null;
   const boardToArray = board.flat();
 
   console.log(boardToArray);
   const numTurns = boardToArray.filter((el) => el !== null).length;
-  // console.log(numTurns);
-  console.log(boardToArray);
-
-  if (boardToArray[0] && boardToArray[1] && boardToArray[2]) {
-    winner = boardToArray[0] === "nought" ? "noughts" : "crosses";
+  if (numTurns > 4) {
+    horizontalChecking();
+    verticalChecking();
+    diagonalChecking();
+    console.log(winner);
+  }
+  if (numTurns === 9) return "nobody";
+  if (winner) {
     gameOn = false;
     return winner;
-  } else if (boardToArray[3] && boardToArray[4] && boardToArray[5]) {
-    gameOn = false;
-    return boardToArray[3] === "nought" ? "noughts" : "crosses";
-  } else if (boardToArray[6] && boardToArray[7] && boardToArray[8]) {
-    gameOn = false;
-    return boardToArray[6] === "nought" ? "noughts" : "crosses";
-  } else if (boardToArray[0] && boardToArray[3] && boardToArray[6]) {
-    gameOn = false;
-    return boardToArray[0] === "nought" ? "noughts" : "crosses";
-  } else if (boardToArray[1] && boardToArray[4] && boardToArray[7]) {
-    gameOn = false;
-    return boardToArray[1] === "nought" ? "noughts" : "crosses";
-  } else if (boardToArray[2] && boardToArray[5] && boardToArray[8]) {
-    gameOn = false;
-    return boardToArray[2] === "nought" ? "noughts" : "crosses";
-  } else if (boardToArray[0] && boardToArray[4] && boardToArray[8]) {
-    gameOn = false;
-    return boardToArray[0] === "nought" ? "noughts" : "crosses";
-  } else if (boardToArray[6] && boardToArray[4] && boardToArray[2]) {
-    gameOn = false;
-    return boardToArray[6] === "nought" ? "noughts" : "crosses";
-  }
-
-  console.log("checkWinner was called");
-  if (boardToArray.includes(null)) return null;
-  else {
-    return "nobody";
+  } else {
+    return null;
   }
 }
 
@@ -70,6 +101,7 @@ function checkWinner() {
 function resetGame() {
   console.log("resetGame was called");
   gameOn = true;
+  winner = null;
   board = [
     [null, null, null],
     [null, null, null],
