@@ -1,0 +1,1 @@
+const academy = require("./academy");
