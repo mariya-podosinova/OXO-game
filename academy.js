@@ -11,7 +11,7 @@ let first = true;
 let gameOn = true;
 let winner = null;
 
-function takeTurn(row, column) {
+function takeTurn(row, column, board) {
   console.log("takeTurn was called with row: " + row + ", column:" + column);
 
   if (!gameOn) return null;
@@ -121,6 +121,8 @@ if (typeof exports === "object") {
   // Node. Does not work with strict CommonJS, but only CommonJS-like
   // environments that support module.exports, like Node.
   module.exports = {
+    first,
+    diagonalChecking,
     takeTurn,
     checkWinner,
     resetGame,
