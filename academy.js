@@ -122,10 +122,13 @@ if (typeof exports === "object") {
   // environments that support module.exports, like Node.
   // eslint-disable-next-line no-undef
   module.exports = {
+    checkForWinner,
     takeTurn,
     checkWinner,
     resetGame,
     getBoard,
+    horizontalChecking,
+    verticalChecking,
   };
 } else {
   console.log("Running in Browser");
