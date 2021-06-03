@@ -11,7 +11,7 @@ let first = true;
 let gameOn = true;
 let winner = null;
 
-function takeTurn(row, column, board) {
+function takeTurn(row, column) {
   console.log("takeTurn was called with row: " + row + ", column:" + column);
 
   if (!gameOn) return null;
@@ -32,7 +32,7 @@ const checkForWinner = (noughts, crosses) => {
   }
   return null;
 };
-//Horizonatal
+//Horizontal
 const horizontalChecking = () => {
   board.forEach((row) => {
     const crosses = row.filter((col) => col === "cross");
@@ -44,7 +44,7 @@ const horizontalChecking = () => {
   });
   return winner;
 };
-//Verical
+//Vertical
 const verticalChecking = () => {
   board.forEach((row, i) => {
     const columnArr = [board[0][i], board[1][i], board[2][i]];
@@ -120,9 +120,8 @@ if (typeof exports === "object") {
   console.log("Running in Node");
   // Node. Does not work with strict CommonJS, but only CommonJS-like
   // environments that support module.exports, like Node.
+  // eslint-disable-next-line no-undef
   module.exports = {
-    first,
-    diagonalChecking,
     takeTurn,
     checkWinner,
     resetGame,
